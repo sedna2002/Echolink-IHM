@@ -1,0 +1,49 @@
+.table-container {
+    width: 100%;
+    height: 400px; /* hauteur fixe, ajustable selon tes besoins */
+    overflow-x: auto; /* scroll horizontal si trop large */
+    overflow-y: auto; /* scroll vertical si trop haut */
+    border: 1px solid #ccc;
+}
+
+/* Tu peux garder ton style existant pour le tableau */
+table { 
+    border-collapse: collapse; 
+    width: 100%; 
+}
+th, td { 
+    border: 1px solid #aaa; 
+    padding: 8px; 
+    text-align: left; 
+}
+th { 
+    background-color: #eee; 
+}
+tr:nth-child(even) { 
+    background-color: #f9f9f9; 
+}
+
+/* Style de l'en-tête */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f2f2f2;       /* fond gris clair */
+    border: 1px solid #ccc;           /* fine bordure grise */
+    border-radius: 8px;               /* coins arrondis */
+    padding: 10px 20px;               /* marges internes */
+    margin-bottom: 20px;              /* espace avec le tableau */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* ombre douce */
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header img {
+    height: 80px;
+    width: auto;
+}
