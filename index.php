@@ -31,7 +31,8 @@ try {
     $stmt = $pdo->query("
         SELECT 
             A.date_connexion,
-            A.indicatif,
+            A.indicatif as indicatifA,
+            B.indicatif as indicatifB,
             A.application,
             A.plateforme,
             A.appareil,
@@ -40,7 +41,22 @@ try {
             B.idEcholink AS idEcholink
         FROM connexions A
         LEFT JOIN id B ON B.indicatif = A.indicatif
-        ORDER BY A.date_connexion DESC
+        UNION
+
+        SELECT 
+            A.date_connexion,
+            A.indicatif AS indicatifA,
+            B.indicatif AS indicatifB,
+            A.application,
+            A.plateforme,
+            A.appareil,
+            A.os,
+            A.version,
+            B.idEcholink AS idEcholink
+        FROM connexions A
+        RIGHT JOIN id B ON B.indicatif = A.indicatif
+
+        ORDER BY date_connexion DESC
         LIMIT 100
     ");
     $connections = $stmt->fetchAll();
@@ -56,6 +72,7 @@ try {
     <meta charset="UTF-8">
     <title>Liste des connexions EchoLink</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" href="Images/LogoEcholink.png" type="image/png">
 </head>
 <body>
 
@@ -84,7 +101,7 @@ try {
                     echo "<tr>";
                     echo "<td>".htmlspecialchars($c['date_connexion'])."</td>";
                     echo "<td>".htmlspecialchars($c['idEcholink'])."</td>";
-                    echo "<td>".htmlspecialchars($c['indicatif'])."</td>";
+                    echo "<td>".htmlspecialchars($c['indicatifA'] ?? $c['indicatifB'])."</td>";
                     echo "<td>".htmlspecialchars($c['application'])."</td>";
                     echo "<td>".htmlspecialchars($c['plateforme'])."</td>";
                     echo "<td>".htmlspecialchars($c['appareil'])."</td>";

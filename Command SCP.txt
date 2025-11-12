@@ -17,7 +17,7 @@ Dossier PHP pour Apache2
 cd /var/www/html/Echolink
 
 Sur Windows : linux --> win : scp frederic@192.168.0.23:/var/www/html/Echolink/* .
-Sur Windows : win --> linux : scp * frederic@192.168.0.23:/var/www/html/Echolink/
+Sur Windows : win --> linux : scp -r * frederic@192.168.0.23:/var/www/html/Echolink/
 
 Pour redémarrer le système Linux à partir d'une session de terminal
 sudo reboot
