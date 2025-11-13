@@ -30,7 +30,7 @@ $connections = null;
 try {
     $stmt = $pdo->query("
         SELECT 
-            A.date_connexion,
+            B.date_connexion,
             A.indicatif as indicatifA,
             B.indicatif as indicatifB,
             A.application,
@@ -39,22 +39,8 @@ try {
             A.os,
             A.version,
             B.idEcholink AS idEcholink
-        FROM connexions A
-        LEFT JOIN id B ON B.indicatif = A.indicatif
-        UNION
-
-        SELECT 
-            A.date_connexion,
-            A.indicatif AS indicatifA,
-            B.indicatif AS indicatifB,
-            A.application,
-            A.plateforme,
-            A.appareil,
-            A.os,
-            A.version,
-            B.idEcholink AS idEcholink
-        FROM connexions A
-        RIGHT JOIN id B ON B.indicatif = A.indicatif
+        FROM id B
+        LEFT JOIN connexions A ON B.indicatif = A.indicatif AND B.id = A.fk_idID
 
         ORDER BY date_connexion DESC
         LIMIT 100
