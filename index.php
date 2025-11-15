@@ -84,16 +84,24 @@ try {
         <?php 
             if ($connections != null) {
                 foreach ($connections as $c):
+                    $indicatif = htmlspecialchars($c['indicatifA'] ?? $c['indicatifB']);
+
                     echo "<tr>";
                     echo "<td>".htmlspecialchars($c['date_connexion'])."</td>";
                     echo "<td>".htmlspecialchars($c['idEcholink'])."</td>";
-                    echo "<td>".htmlspecialchars($c['indicatifA'] ?? $c['indicatifB'])."</td>";
+
+                    echo "<td class=\"cell-links\">";
+                    echo "<div class=\"left\"><a target=\"_blank\" href=\"https://database.radioid.net/database/view?callsign=".$indicatif."\">".$indicatif."</a></div>";
+                    echo "<div class=\"right\">(<a target=\"_blank\" href=\"https://aprs.fi/#!call=".$indicatif."*\">GPS</a>)</div>";
+                    echo "</td>";
+
                     echo "<td>".htmlspecialchars($c['application'])."</td>";
                     echo "<td>".htmlspecialchars($c['plateforme'])."</td>";
                     echo "<td>".htmlspecialchars($c['appareil'])."</td>";
                     echo "<td>".htmlspecialchars($c['os'])."</td>";
                     echo "<td>".htmlspecialchars($c['version'])."</td>";
                     echo "</tr>";
+                
                 endforeach;
             }
         ?>
